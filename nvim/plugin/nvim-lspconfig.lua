@@ -1,4 +1,5 @@
-if vim.g.vscode then
+local ok, _ = pcall(require, "lspconfig")
+if not ok or vim.g.vscode then
   return
 end
 
@@ -78,7 +79,7 @@ vim.fn.sign_define(
   { text = "", texthl = "", linehl = "", numhl = "LspDiagnosticsVirtualTextHint" }
 )
 
--- vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = true, sp = "#ffffff" })
+-- vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { sp = "red", underline = true })
 
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
@@ -89,7 +90,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
 vim.diagnostic.config {
   virtual_text = false,
   -- signs = false,
-  -- underline = true,
+  -- underline = false,
   float = {
     border = "rounded",
   },

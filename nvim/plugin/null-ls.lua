@@ -1,4 +1,5 @@
-if vim.g.vscode then
+local ok, _ = pcall(require, "null_ls")
+if not ok or vim.g.vscode then
   return
 end
 

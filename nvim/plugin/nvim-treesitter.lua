@@ -1,4 +1,5 @@
-if vim.g.vscode then
+local ok, _ = pcall(require, "nvim-treesitter")
+if not ok or vim.g.vscode then
   return
 end
 
@@ -12,6 +13,7 @@ require("nvim-treesitter.configs").setup {
     "jsonc",
     "lua",
     "python",
+    "prisma",
     "ruby",
     "tsx",
     "typescript",

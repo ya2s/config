@@ -16,7 +16,6 @@ return require("packer").startup {
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-cmdline",
-        "hrsh7th/cmp-vsnip",
         "hrsh7th/vim-vsnip",
       },
     }
@@ -34,7 +33,6 @@ return require("packer").startup {
     use "yamatsum/nvim-cursorline"
     use "Akianonymus/nvim-colorizer.lua"
     use "windwp/nvim-autopairs"
-    use "numToStr/Navigator.nvim"
     use "kylechui/nvim-surround"
     use "jose-elias-alvarez/null-ls.nvim"
     use "rcarriga/nvim-notify"
@@ -44,6 +42,11 @@ return require("packer").startup {
         vim.fn["mkdp#util#install"]()
       end,
     }
+    use "numToStr/Navigator.nvim"
+    -- use "alexghergh/nvim-tmux-navigation"
+    -- use "elijahdanko/ttymux.nvim"
+    -- use "aserowy/tmux.nvim"
+    use "dnlhc/glance.nvim"
     -- use("github/copilot.vim")
   end,
   config = {

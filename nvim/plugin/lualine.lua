@@ -1,4 +1,5 @@
-if vim.g.vscode then
+local ok, _ = pcall(require, "lualine")
+if not ok or vim.g.vscode then
   return
 end
 
@@ -7,8 +8,6 @@ local theme = require "github-theme.plugins.lualine"
 local util = require "github-theme.util"
 local nonicons_extention = require "nvim-nonicons.extentions.lualine"
 local p = require("github-theme.palette").get_palette "dark"
-
--- vim.api.nvim_set_hl(0, "StatusLine", { fg = p.syntax.comment, bg = "#24292e" })
 
 local get_group_color = function(color)
   local normal = { bg = "#24292e", fg = p.syntax.comment }

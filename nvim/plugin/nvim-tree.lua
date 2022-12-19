@@ -1,4 +1,5 @@
-if vim.g.vscode then
+local ok, _ = pcall(require, "nvim-tree")
+if not ok or vim.g.vscode then
   return
 end
 
@@ -6,7 +7,7 @@ local tree_cb = require("nvim-tree.config").nvim_tree_callback
 local nonicons_extention = require "nvim-nonicons.extentions.nvim-tree"
 
 vim.keymap.set("n", "<C-e>", ":NvimTreeToggle<CR>", { silent = true })
-vim.api.nvim_set_hl(0, "NvimTreeVertSplit", { fg = "#24292e" })
+vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { fg = "#24292e" })
 vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { fg = "#40474e" })
 vim.api.nvim_create_autocmd("BufEnter", {
   nested = true,

@@ -3,4 +3,4 @@ if not ok or vim.g.vscode then
   return
 end
 
-require("colorizer").setup()
+require("colorizer").setup {}
