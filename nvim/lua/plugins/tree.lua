@@ -10,10 +10,12 @@ local M = {
 }
 
 function M.config()
-  local tree_cb = require("nvim-tree.config").nvim_tree_callback
   local nonicons_extention = require "nvim-nonicons.extentions.nvim-tree"
 
+  vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { fg = "#24292e" })
+
   vim.keymap.set("n", "<C-e>", ":NvimTreeToggle<CR>", { silent = true })
+
   vim.api.nvim_create_autocmd("BufEnter", {
     nested = true,
     callback = function()
@@ -24,7 +26,9 @@ function M.config()
   })
 
   require("nvim-tree").setup {
-    open_on_tab = true,
+    tab = {
+      sync = { open = true },
+    },
     sync_root_with_cwd = true,
     update_focused_file = {
       enable = true,
@@ -37,9 +41,6 @@ function M.config()
     view = {
       mappings = {
         list = {
-          { key = { "p" }, cb = tree_cb "preview" },
-          { key = { "u" }, cb = tree_cb "dir_up" },
-          { key = { "o" }, cb = tree_cb "edit" },
           { key = "<Tab>", cb = ":tabnext<CR>" },
           { key = "<C-e>", cb = ":NvimTreeToggle<CR>" },
         },

@@ -7,14 +7,13 @@ local M = {
 
 function M.config()
   local map = vim.keymap.set
-  local icons = require "nvim-nonicons"
 
   require("telescope").setup {
     defaults = {
       layout_config = {
         prompt_position = "top",
       },
-      prompt_prefix = "  " .. icons.get "telescope" .. "  ",
+      prompt_prefix = "    ",
       selection_caret = " ❯ ",
       entry_prefix = "   ",
       sorting_strategy = "ascending",

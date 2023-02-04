@@ -31,7 +31,14 @@ return {
   { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true, event = "BufEnter", cond = not vim.g.vscode },
   { "lukas-reineke/indent-blankline.nvim", cond = not vim.g.vscode },
   { "yamatsum/nvim-cursorline", config = true, cond = not vim.g.vscode },
-  { "Akianonymus/nvim-colorizer.lua", config = true, cond = not vim.g.vscode },
+  {
+    "Akianonymus/nvim-colorizer.lua",
+    cond = not vim.g.vscode,
+    opts = { user_default_options = {
+      mode = "virtualtext",
+      virtualtext = "⚫︎",
+    } },
+  },
   {
     "vimpostor/vim-tpipeline",
     lazy = true,

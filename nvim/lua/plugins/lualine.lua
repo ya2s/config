@@ -35,7 +35,8 @@ function M.config()
   require("lualine").setup {
     options = { theme = custom_theme },
     sections = {
-      lualine_a = { nonicons_extention.mode },
+      -- lualine_a = { nonicons_extention.mode },
+      lualine_a = {},
       lualine_b = {
         {
           "filename",

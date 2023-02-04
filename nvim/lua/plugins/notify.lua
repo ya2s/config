@@ -1,7 +1,6 @@
 local M = {
   "rcarriga/nvim-notify",
   event = "VeryLazy",
-  config = true,
   cond = not vim.g.vscode,
 }
 
