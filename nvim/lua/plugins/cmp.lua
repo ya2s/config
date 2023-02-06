@@ -1,4 +1,4 @@
-local M = {
+return {
   "hrsh7th/nvim-cmp",
   cond = not vim.g.vscode,
   event = "BufEnter",
@@ -9,48 +9,45 @@ local M = {
     "hrsh7th/cmp-cmdline",
     "hrsh7th/vim-vsnip",
   },
+  config = function()
+    local cmp = require "cmp"
+
+    cmp.setup {
+      snippet = {
+        expand = function(args)
+          vim.fn["vsnip#anonymous"](args.body)
+        end,
+      },
+      sources = {
+        { name = "buffer" },
+        { name = "nvim_lua" },
+        { name = "nvim_lsp" },
+      },
+    }
+
+    cmp.setup.cmdline(":", {
+      formatting = {
+        fields = { "abbr" },
+      },
+      completion = {
+        keyword_length = 3,
+      },
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = "path" },
+      }, {
+        { name = "cmdline" },
+      }),
+    })
+
+    cmp.setup.cmdline("/", {
+      formatting = {
+        fields = { "abbr" },
+      },
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = "buffer" },
+      },
+    })
+  end,
 }
-
-function M.config()
-  local cmp = require "cmp"
-
-  cmp.setup {
-    snippet = {
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
-      end,
-    },
-    sources = {
-      { name = "buffer" },
-      { name = "nvim_lua" },
-      { name = "nvim_lsp" },
-    },
-  }
-
-  cmp.setup.cmdline(":", {
-    formatting = {
-      fields = { "abbr" },
-    },
-    completion = {
-      keyword_length = 3,
-    },
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = "path" },
-    }, {
-      { name = "cmdline" },
-    }),
-  })
-
-  cmp.setup.cmdline("/", {
-    formatting = {
-      fields = { "abbr" },
-    },
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-      { name = "buffer" },
-    },
-  })
-end
-
-return M

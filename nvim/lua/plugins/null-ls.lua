@@ -4,20 +4,20 @@ local M = {
 }
 
 function M.config()
-  local null_ls = require "null-ls"
+  local nls = require "null-ls"
   local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-  null_ls.setup {
+  nls.setup {
     sources = {
-      null_ls.builtins.formatting.stylua.with {
+      nls.builtins.formatting.stylua.with {
         extra_args = { "--indent-type", "Spaces", "--indent-width", "2", "--call-parentheses", "None" },
       },
-      null_ls.builtins.formatting.prettier.with {
+      nls.builtins.formatting.prettier.with {
         condition = function(utils)
           return utils.root_has_file { "package.json" }
         end,
       },
-      null_ls.builtins.formatting.deno_fmt.with {
+      nls.builtins.formatting.deno_fmt.with {
         condition = function(utils)
           return utils.root_has_file { "deno.json" }
         end,
