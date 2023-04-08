@@ -12,7 +12,7 @@ else
   o.shiftwidth = 2
   o.updatetime = 250
   o.cmdheight = 0
-  -- o.statuscolumn = "%=%l %s%C"
+  o.statuscolumn = "%=%l %s%C"
 
   g.mapleader = " "
 

@@ -18,10 +18,13 @@ return {
           vim.fn["vsnip#anonymous"](args.body)
         end,
       },
-      sources = {
-        { name = "buffer" },
+      mapping = cmp.mapping.preset.insert {},
+      sources = cmp.config.sources {
         { name = "nvim_lua" },
         { name = "nvim_lsp" },
+      },
+      {
+        { name = "buffer" },
       },
     }
 

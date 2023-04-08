@@ -10,12 +10,13 @@ local M = {
 
 function M.config()
   local lspconfig = require "lspconfig"
-  local on_attach = function(client, bufnr)
-    local opts = { buffer = bufnr, silent = true }
-    -- back ctrl-o
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  end
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(ev)
+      local opts = { buffer = ev.buf }
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    end,
+  })
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
@@ -25,14 +26,12 @@ function M.config()
   local servers = { "rust_analyzer", "prismals" }
   for _, server in ipairs(servers) do
     lspconfig[server].setup {
-      on_attach = on_attach,
       capabilities = capabilities,
     }
   end
 
   lspconfig["denols"].setup {
     root_dir = lspconfig.util.root_pattern "deno.json",
-    on_attach = on_attach,
     capabilities = capabilities,
     init_options = {
       lint = true,
@@ -51,12 +50,10 @@ function M.config()
 
   lspconfig["tsserver"].setup {
     root_dir = lspconfig.util.root_pattern "package.json",
-    on_attach = on_attach,
     capabilities = capabilities,
   }
 
   lspconfig.lua_ls.setup {
-    on_attach = on_attach,
     capabilities = capabilities,
     settings = {
       Lua = {

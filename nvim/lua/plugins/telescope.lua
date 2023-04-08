@@ -16,7 +16,9 @@ return {
     },
   },
   init = function()
-    vim.keymap.set("", "<leader>p", require("telescope.builtin").git_files, { silent = true })
-    vim.keymap.set("", "<leader>f", require("telescope.builtin").live_grep, { silent = true })
+    if not vim.g.vscode then
+      vim.keymap.set("", "<leader>p", require("telescope.builtin").git_files, { silent = true })
+      vim.keymap.set("", "<leader>f", require("telescope.builtin").live_grep, { silent = true })
+    end
   end,
 }
