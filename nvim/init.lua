@@ -8,11 +8,11 @@ if g.vscode then
 else
   o.number = true
   o.signcolumn = "yes"
+  o.statuscolumn = "%=%l %s"
   o.expandtab = true
   o.shiftwidth = 2
   o.updatetime = 250
   o.cmdheight = 0
-  o.statuscolumn = "%=%l %s%C"
 
   g.mapleader = " "
 

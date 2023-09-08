@@ -1,10 +1,14 @@
 return {
   "phaazon/hop.nvim",
   branch = "v2",
-  lazy = true,
-  keys = "s",
+  event = "VeryLazy",
+  keys = {
+    {
+      "s",
+      function()
+        require("hop").hint_words()
+      end,
+    },
+  },
   config = true,
-  init = function()
-    vim.keymap.set("n", "s", require("hop").hint_words, { silent = true })
-  end,
 }

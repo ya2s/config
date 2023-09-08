@@ -5,31 +5,24 @@ local M = {
 
 function M.config()
   local icons = require "nvim-nonicons"
-  local nonicons_extention = require "nvim-nonicons.extentions.lualine"
-  local util = require "github-theme.util"
-  local p = require("github-theme.palette").get_palette "dark"
-
-  local get_group_color = function(color)
-    local normal = { bg = "#24292e", fg = p.syntax.comment }
-    local group = {
-      a = { bg = "#24292e", fg = util.darken(color, 0.4, p.bg) },
-      b = normal,
-      c = normal,
-      x = normal,
-      y = normal,
-      z = normal,
-    }
-    return group
-  end
+  local colors = {
+    black = "#23292e",
+    white = "#666666",
+  }
+  local component = {
+    a = { fg = colors.white, bg = colors.black },
+    b = { fg = colors.white, bg = colors.black },
+    c = { fg = colors.white, bg = colors.black },
+  }
 
   local custom_theme = {
-    alt_bg = get_group_color(p.green),
-    normal = get_group_color(p.green),
-    insert = get_group_color(p.bright_blue),
-    command = get_group_color(p.bright_red),
-    visual = get_group_color(p.bright_magenta),
-    replace = get_group_color(p.bright_red),
-    terminal = get_group_color(p.orange),
+    alt_bg = component,
+    normal = component,
+    insert = component,
+    command = component,
+    visual = component,
+    replace = component,
+    terminal = component,
   }
 
   require("lualine").setup {

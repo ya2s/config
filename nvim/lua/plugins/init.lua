@@ -10,6 +10,7 @@ return {
   },
   {
     "akinsho/bufferline.nvim",
+    version = "*",
     opts = {
       options = {
         mode = "tabs",
@@ -28,16 +29,23 @@ return {
     },
     cond = not vim.g.vscode,
   },
-  { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true, event = "BufEnter", cond = not vim.g.vscode },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    lazy = true,
+    event = "BufEnter",
+    cond = not vim.g.vscode,
+  },
   { "lukas-reineke/indent-blankline.nvim", cond = not vim.g.vscode },
   { "yamatsum/nvim-cursorline", config = true, cond = not vim.g.vscode },
   {
     "Akianonymus/nvim-colorizer.lua",
     cond = not vim.g.vscode,
-    opts = { user_default_options = {
-      mode = "virtualtext",
-      virtualtext = "⚫︎",
-    } },
+    opts = {
+      user_default_options = {
+        mode = "virtualtext",
+        virtualtext = "⚫︎",
+      },
+    },
   },
   {
     "vimpostor/vim-tpipeline",
@@ -50,10 +58,11 @@ return {
   },
   {
     "projekt0n/github-nvim-theme",
-    lazy = true,
-    event = "BufEnter",
+    priority = 1000,
     config = function()
       require("github-theme").setup {}
+      vim.cmd "colorscheme github_dark_dimmed"
+      -- vim.cmd "colorscheme github_dark_dimmed"
     end,
     cond = not vim.g.vscode,
   },

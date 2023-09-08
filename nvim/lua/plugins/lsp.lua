@@ -12,9 +12,11 @@ function M.config()
   local lspconfig = require "lspconfig"
   vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-    callback = function(ev)
-      local opts = { buffer = ev.buf }
+    callback = function(args)
+      local opts = { buffer = args.buf }
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
       vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+      client.server_capabilities.semanticTokensProvider = nil
     end,
   })
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -33,24 +35,25 @@ function M.config()
   lspconfig["denols"].setup {
     root_dir = lspconfig.util.root_pattern "deno.json",
     capabilities = capabilities,
-    init_options = {
-      lint = true,
-      unstable = true,
-      suggest = {
-        imports = {
-          hosts = {
-            ["https://deno.land"] = true,
-            ["https://cdn.nest.land"] = true,
-            ["https://crux.land"] = true,
-          },
-        },
-      },
-    },
+    -- init_options = {
+    --   lint = true,
+    --   unstable = true,
+    --   suggest = {
+    --     imports = {
+    --       hosts = {
+    --         ["https://deno.land"] = true,
+    --         ["https://cdn.nest.land"] = true,
+    --         ["https://crux.land"] = true,
+    --       },
+    --     },
+    --   },
+    -- },
   }
 
   lspconfig["tsserver"].setup {
     root_dir = lspconfig.util.root_pattern "package.json",
     capabilities = capabilities,
+    single_file_support = false,
   }
 
   lspconfig.lua_ls.setup {
