@@ -3,15 +3,19 @@ local g = vim.g
 local map = vim.keymap.set
 
 if g.vscode then
-  map("n", "<Tab>", "<Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>")
-  map("n", "<S-Tab>", "<Cmd>call VSCodeNotify('workbench.action.previousEditor')<CR>")
+  map("n", "<Tab>", function()
+    require("vscode-neovim").call "workbench.action.nextEditor"
+  end)
+  map("n", "<S-Tab>", function()
+    require("vscode-neovim").call "workbench.action.previousEditor"
+  end)
 else
   o.number = true
   o.signcolumn = "yes"
   o.statuscolumn = "%=%l %s"
   o.expandtab = true
   o.shiftwidth = 2
-  o.updatetime = 250
+  -- o.updatetime = 250
   o.cmdheight = 0
 
   g.mapleader = " "

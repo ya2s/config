@@ -1,6 +1,5 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  cond = not vim.g.vscode,
   event = "BufReadPost",
   config = function()
     require("nvim-treesitter.configs").setup {

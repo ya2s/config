@@ -1,6 +1,5 @@
 local M = {
   "nvim-lualine/lualine.nvim",
-  cond = not vim.g.vscode,
 }
 
 function M.config()

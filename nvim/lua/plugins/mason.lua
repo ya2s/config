@@ -3,7 +3,6 @@ local M = {
   dependencies = {
     { "williamboman/mason-lspconfig.nvim", lazy = true },
   },
-  cond = not vim.g.vscode,
 }
 
 function M.config()

@@ -1,6 +1,5 @@
 local M = {
   "jose-elias-alvarez/null-ls.nvim",
-  cond = not vim.g.vscode,
 }
 
 function M.config()

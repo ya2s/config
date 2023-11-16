@@ -5,7 +5,6 @@ local M = {
   },
   lazy = true,
   event = "BufReadPre",
-  cond = not vim.g.vscode,
 }
 
 function M.config()
@@ -35,19 +34,6 @@ function M.config()
   lspconfig["denols"].setup {
     root_dir = lspconfig.util.root_pattern "deno.json",
     capabilities = capabilities,
-    -- init_options = {
-    --   lint = true,
-    --   unstable = true,
-    --   suggest = {
-    --     imports = {
-    --       hosts = {
-    --         ["https://deno.land"] = true,
-    --         ["https://cdn.nest.land"] = true,
-    --         ["https://crux.land"] = true,
-    --       },
-    --     },
-    --   },
-    -- },
   }
 
   lspconfig["tsserver"].setup {

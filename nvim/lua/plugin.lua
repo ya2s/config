@@ -12,7 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {
-  -- defaults = { lazy = true },
+  defaults = {
+    cond = not vim.g.vscode,
+  },
   ui = {
     border = "rounded",
     icons = {

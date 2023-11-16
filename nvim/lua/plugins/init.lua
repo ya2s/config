@@ -1,12 +1,11 @@
 return {
-  { "nvim-lua/plenary.nvim", lazy = true, cond = not vim.g.vscode },
+  { "nvim-lua/plenary.nvim", lazy = true },
   {
     "yamatsum/nvim-nonicons",
     config = true,
     dependencies = {
       "nvim-tree/nvim-web-devicons",
     },
-    cond = not vim.g.vscode,
   },
   {
     "akinsho/bufferline.nvim",
@@ -27,19 +26,20 @@ return {
         },
       },
     },
-    cond = not vim.g.vscode,
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
     lazy = true,
     event = "BufEnter",
-    cond = not vim.g.vscode,
   },
-  { "lukas-reineke/indent-blankline.nvim", cond = not vim.g.vscode },
-  { "yamatsum/nvim-cursorline", config = true, cond = not vim.g.vscode },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    config = true,
+  },
+  { "yamatsum/nvim-cursorline", config = true },
   {
     "Akianonymus/nvim-colorizer.lua",
-    cond = not vim.g.vscode,
     opts = {
       user_default_options = {
         mode = "virtualtext",
@@ -54,19 +54,16 @@ return {
     config = function()
       vim.g.tpipeline_autoembed = 0
     end,
-    cond = not vim.g.vscode,
   },
   {
     "projekt0n/github-nvim-theme",
     priority = 1000,
     config = function()
-      require("github-theme").setup {}
+      -- require("github-theme").setup {}
       vim.cmd "colorscheme github_dark_dimmed"
-      -- vim.cmd "colorscheme github_dark_dimmed"
     end,
-    cond = not vim.g.vscode,
   },
-  { "kylechui/nvim-surround", config = true },
+  { "kylechui/nvim-surround", config = true, cond = true },
   {
     "lewis6991/gitsigns.nvim",
     opts = {
@@ -79,6 +76,5 @@ return {
         untracked = { text = "▎" },
       },
     },
-    cond = not vim.g.vscode,
   },
 }

@@ -6,7 +6,6 @@ local M = {
   dependencies = {
     { "ahmedkhalf/project.nvim" },
   },
-  cond = not vim.g.vscode,
 }
 
 function M.config()
