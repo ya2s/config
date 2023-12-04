@@ -15,7 +15,7 @@ else
   o.statuscolumn = "%=%l %s"
   o.expandtab = true
   o.shiftwidth = 2
-  -- o.updatetime = 250
+  o.updatetime = 250
   o.cmdheight = 0
 
   g.mapleader = " "

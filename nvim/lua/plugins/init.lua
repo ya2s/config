@@ -1,5 +1,5 @@
 return {
-  { "nvim-lua/plenary.nvim", lazy = true },
+  { "nvim-lua/plenary.nvim",    lazy = true },
   {
     "yamatsum/nvim-nonicons",
     config = true,
@@ -29,8 +29,6 @@ return {
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
-    lazy = true,
-    event = "BufEnter",
   },
   {
     "lukas-reineke/indent-blankline.nvim",
