@@ -1,5 +1,5 @@
 return {
-  { "nvim-lua/plenary.nvim",    lazy = true },
+  { "nvim-lua/plenary.nvim", lazy = true },
   {
     "yamatsum/nvim-nonicons",
     config = true,
@@ -33,15 +33,18 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    config = true,
+    opts = {
+      indent = {
+        char = "▏",
+      },
+    },
   },
   { "yamatsum/nvim-cursorline", config = true },
   {
-    "Akianonymus/nvim-colorizer.lua",
+    "NvChad/nvim-colorizer.lua",
     opts = {
       user_default_options = {
         mode = "virtualtext",
-        virtualtext = "⚫︎",
       },
     },
   },
@@ -57,7 +60,6 @@ return {
     "projekt0n/github-nvim-theme",
     priority = 1000,
     config = function()
-      -- require("github-theme").setup {}
       vim.cmd "colorscheme github_dark_dimmed"
     end,
   },
