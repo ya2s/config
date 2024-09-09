@@ -4,10 +4,10 @@ local map = vim.keymap.set
 
 if g.vscode then
   map("n", "<Tab>", function()
-    require("vscode-neovim").call "workbench.action.nextEditor"
+    require("vscode").call "workbench.action.nextEditor"
   end)
   map("n", "<S-Tab>", function()
-    require("vscode-neovim").call "workbench.action.previousEditor"
+    require("vscode").call "workbench.action.previousEditor"
   end)
 else
   o.number = true
