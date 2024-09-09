@@ -29,6 +29,14 @@ return {
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
+    config = function()
+      local get_option = vim.filetype.get_option
+      vim.filetype.get_option = function(filetype, option)
+        return option == "commentstring" and require("ts_context_commentstring.internal").calculate_commentstring()
+          or get_option(filetype, option)
+      end
+      vim.keymap.set({ "n", "v" }, "<C-_>", ":normal gcc<CR>")
+    end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -41,11 +49,9 @@ return {
   },
   { "yamatsum/nvim-cursorline", config = true },
   {
-    "NvChad/nvim-colorizer.lua",
+    "brenoprata10/nvim-highlight-colors",
     opts = {
-      user_default_options = {
-        mode = "virtualtext",
-      },
+      render = "virtual",
     },
   },
   {

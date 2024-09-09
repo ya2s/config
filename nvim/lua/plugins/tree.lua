@@ -3,21 +3,35 @@ local M = {
   lazy = true,
   event = "BufEnter",
   -- keys = "<C-e>",
-  dependencies = {
-    { "ahmedkhalf/project.nvim" },
-  },
+  -- dependencies = {
+  -- { "ahmedkhalf/project.nvim" },
+  -- },
 }
+
+function M.init()
+  vim.api.nvim_create_autocmd("BufEnter", {
+    nested = true,
+    callback = function(ctx)
+      -- Go to root on startup
+      local root = vim.fs.root(ctx.buf, { ".git" })
+      if root then
+        vim.uv.chdir(root)
+      end
+    end,
+  })
+end
 
 function M.config()
   local nonicons_extention = require "nvim-nonicons.extentions.nvim-tree"
 
-  vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { fg = "#24292e" })
+  -- vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { fg = "#24292e" })
 
-  vim.keymap.set("n", "<C-e>", ":NvimTreeToggle<CR>", { silent = true })
+  vim.keymap.set("n", "<C-e>", require("nvim-tree.api").tree.toggle, { silent = true })
 
   vim.api.nvim_create_autocmd("BufEnter", {
     nested = true,
-    callback = function()
+    callback = function(ctx)
+      -- Auto close on close
       if #vim.api.nvim_list_wins() == 1 and require("nvim-tree.utils").is_nvim_tree_buf() then
         vim.cmd "quit"
       end
@@ -63,7 +77,7 @@ function M.config()
     },
   }
 
-  require("project_nvim").setup {}
+  -- require("project_nvim").setup {}
 end
 
 return M
