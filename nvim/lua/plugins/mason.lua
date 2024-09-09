@@ -8,7 +8,7 @@ local M = {
 function M.config()
   require("mason").setup()
   require("mason-lspconfig").setup {
-    ensure_installed = { "rust_analyzer", "tsserver", "denols", "lua_ls" },
+    ensure_installed = { "ts_ls", "lua_ls" },
     automatic_installation = true,
   }
 end
