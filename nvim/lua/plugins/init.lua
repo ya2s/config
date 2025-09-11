@@ -1,5 +1,5 @@
 return {
-  { "nvim-lua/plenary.nvim", lazy = true },
+  { "nvim-lua/plenary.nvim",    lazy = true },
   {
     "yamatsum/nvim-nonicons",
     config = true,
@@ -33,7 +33,7 @@ return {
       local get_option = vim.filetype.get_option
       vim.filetype.get_option = function(filetype, option)
         return option == "commentstring" and require("ts_context_commentstring.internal").calculate_commentstring()
-          or get_option(filetype, option)
+            or get_option(filetype, option)
       end
       vim.keymap.set({ "n", "v" }, "<C-_>", ":normal gcc<CR>")
     end,
@@ -83,4 +83,15 @@ return {
       },
     },
   },
+  {
+    'dnlhc/glance.nvim',
+    cmd = 'Glance',
+    config = function()
+      vim.keymap.set("n", "gD", "<CMD>Glance definitions<CR>")
+      vim.keymap.set("n", "gR", "<CMD>Glance references<CR>")
+      vim.keymap.set("n", "gY", "<CMD>Glance type_definitions<CR>")
+      vim.keymap.set("n", "gM", "<CMD>Glance implementations<CR>")
+    end
+  }
+
 }

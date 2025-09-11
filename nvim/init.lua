@@ -22,6 +22,8 @@ else
 
   map("n", "<Tab>", "gt")
   map("n", "<S-Tab>", "gT")
+
+  require "lsp"
 end
 
 o.ignorecase = true
