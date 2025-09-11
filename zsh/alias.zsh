@@ -6,11 +6,11 @@ alias cat='bat --style=plain'
 alias conf='(){cd $XDG_CONFIG_HOME/$1}'
 alias d="docker"
 alias di="docker image"
-alias dc="docker container"
+alias dc="docker compose"
 alias fb='firebase'
 alias g='git'
 alias gc='gcloud'
-alias gh='github'
+alias gd='github'
 alias k='kubectl'
 alias kc='kubectx'
 alias ls='eza'
