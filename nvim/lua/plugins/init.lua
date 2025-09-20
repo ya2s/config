@@ -1,4 +1,5 @@
 return {
+  { "neovim/nvim-lspconfig" },
   { "nvim-lua/plenary.nvim",    lazy = true },
   {
     "yamatsum/nvim-nonicons",

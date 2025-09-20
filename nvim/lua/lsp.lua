@@ -1,4 +1,17 @@
-vim.lsp.enable('luals')
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      format = {
+        enable = true,
+        defaultConfig = {
+          indent_style = "space",
+          indent_size = "2",
+        }
+      },
+    },
+  },
+})
+vim.lsp.enable('lua_ls')
 
 vim.diagnostic.config {
   signs = {
