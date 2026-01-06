@@ -1,11 +1,13 @@
 [include]
   path = ~/.config/git/.gitconfig
 [user]
-	name = yamatsum
+  name = ya2s
 [core]
   editor = nvim
   pager = delta
-	excludesfile = /Users/yamatsum/.gitignore_global
+  excludesfile = /Users/yamatsum/.gitignore_global
+[commit]
+  template = /Users/yamatsum/.stCommitMsg
 [ghq]
   root = ~/.ghq
 [alias]
@@ -17,12 +19,10 @@
   untracked = magenta
   deleted = red
 [filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
 [delta]
   syntax-theme = TwoDark
   line-numbers = true
-[commit]
-	template = /Users/yamatsum/.stCommitMsg
