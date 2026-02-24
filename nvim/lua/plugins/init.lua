@@ -70,7 +70,7 @@ return {
       vim.cmd "colorscheme github_dark_dimmed"
     end,
   },
-  { "kylechui/nvim-surround", config = true, cond = true },
+  { "kylechui/nvim-surround", cond = true },
   {
     "lewis6991/gitsigns.nvim",
     opts = {
