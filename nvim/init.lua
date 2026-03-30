@@ -31,5 +31,3 @@ o.smartcase = true
 o.clipboard = "unnamedplus"
 
 map({ "i", "v" }, "<C-j>", "<esc>")
-
-require "plugin"

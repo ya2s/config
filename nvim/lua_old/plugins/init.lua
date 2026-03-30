@@ -1,6 +1,5 @@
 return {
-  { "neovim/nvim-lspconfig" },
-  { "nvim-lua/plenary.nvim",    lazy = true },
+  { "nvim-lua/plenary.nvim", lazy = true },
   {
     "yamatsum/nvim-nonicons",
     config = true,
@@ -29,32 +28,11 @@ return {
     },
   },
   {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    config = function()
-      local get_option = vim.filetype.get_option
-      vim.filetype.get_option = function(filetype, option)
-        return option == "commentstring" and require("ts_context_commentstring.internal").calculate_commentstring()
-            or get_option(filetype, option)
-      end
-      vim.keymap.set({ "n", "v" }, "<C-_>", ":normal gcc<CR>")
-    end,
+    dir = "/Users/yamatsum/.ghq/github.com/ya2s/nvim-cursorline",
+    name = "nvim-cursorline",
+    config = true,
   },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    opts = {
-      indent = {
-        char = "▏",
-      },
-    },
-  },
-  { "yamatsum/nvim-cursorline", config = true },
-  {
-    "brenoprata10/nvim-highlight-colors",
-    opts = {
-      render = "virtual",
-    },
-  },
+  -- { "yamatsum/nvim-cursorline", config = true },
   {
     "vimpostor/vim-tpipeline",
     lazy = true,
@@ -63,14 +41,6 @@ return {
       vim.g.tpipeline_autoembed = 0
     end,
   },
-  {
-    "projekt0n/github-nvim-theme",
-    priority = 1000,
-    config = function()
-      vim.cmd "colorscheme github_dark_dimmed"
-    end,
-  },
-  { "kylechui/nvim-surround", cond = true },
   {
     "lewis6991/gitsigns.nvim",
     opts = {

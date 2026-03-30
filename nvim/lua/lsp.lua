@@ -1,3 +1,5 @@
+vim.pack.add({ 'https://github.com/neovim/nvim-lspconfig' })
+
 vim.lsp.config('lua_ls', {
   settings = {
     Lua = {
@@ -53,3 +55,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end,
 })
+
+vim.lsp.document_color.enable(true, nil, { style = ' ' })
