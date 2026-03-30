@@ -1,3 +1,3 @@
-if not vim.g.vscode then
-  vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter' })
-end
+if vim.g.vscode then return end
+
+vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter' })

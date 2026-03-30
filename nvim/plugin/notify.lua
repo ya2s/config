@@ -1,6 +1,7 @@
-if not vim.g.vscode then
-  vim.pack.add({ "https://github.com/rcarriga/nvim-notify" })
+if vim.g.vscode then return end
 
+vim.schedule(function()
+  vim.pack.add({ "https://github.com/rcarriga/nvim-notify" })
   require("notify").setup()
   vim.notify = require("notify")
-end
+end)

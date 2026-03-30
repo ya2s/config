@@ -1,10 +1,11 @@
-if not vim.g.vscode then
-  vim.pack.add({ 'https://github.com/lukas-reineke/indent-blankline.nvim' })
+if vim.g.vscode then return end
 
-  require("ibl").setup({
-    indent = {
-      char = "▏",
-    },
-    scope = { enabled = false },
-  })
-end
+vim.pack.add({ 'https://github.com/lukas-reineke/indent-blankline.nvim' })
+
+require("ibl").setup({
+  indent = {
+    char = "▏",
+  },
+  scope = { enabled = false },
+})
+

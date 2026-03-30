@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 local o = vim.o
 local g = vim.g
 local map = vim.keymap.set

@@ -1,18 +1,17 @@
-if not vim.g.vscode then
-  vim.pack.add({ "https://github.com/JoosepAlviste/nvim-ts-context-commentstring" })
+if vim.g.vscode then return end
 
-  require("ts_context_commentstring").setup({
-    enable_autocmd = false,
-  })
+vim.pack.add({ "https://github.com/JoosepAlviste/nvim-ts-context-commentstring" })
 
-  local get_option = vim.filetype.get_option
-  vim.filetype.get_option = function(filetype, option)
-    return option == "commentstring"
-        and require("ts_context_commentstring.internal").calculate_commentstring()
-        or get_option(filetype, option)
-  end
+require("ts_context_commentstring").setup({
+  enable_autocmd = false,
+})
 
-  vim.keymap.set("n", "<C-_>", "gcc", { remap = true, silent = true })
-  vim.keymap.set("v", "<C-_>", "gc", { remap = true, silent = true })
+local get_option = vim.filetype.get_option
+vim.filetype.get_option = function(filetype, option)
+  return option == "commentstring"
+      and require("ts_context_commentstring.internal").calculate_commentstring()
+      or get_option(filetype, option)
 end
 
+vim.keymap.set("n", "<C-_>", "gcc", { remap = true, silent = true })
+vim.keymap.set("v", "<C-_>", "gc", { remap = true, silent = true })

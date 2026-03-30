@@ -56,3 +56,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 vim.lsp.document_color.enable(true, nil, { style = ' ' })
+
