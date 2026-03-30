@@ -24,6 +24,7 @@ else
   map("n", "<S-Tab>", "gT")
 
   require "lsp"
+  require "navigator"
 end
 
 o.ignorecase = true
