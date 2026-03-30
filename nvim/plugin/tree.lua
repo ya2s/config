@@ -1,7 +1,5 @@
 if vim.g.vscode then return end
 
-vim.pack.add({ "https://github.com/nvim-tree/nvim-tree.lua" })
-
 vim.api.nvim_create_autocmd("BufEnter", {
   nested = true,
   callback = function(ctx)
@@ -12,7 +10,47 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
-vim.keymap.set("n", "<C-e>", function() require("nvim-tree.api").tree.toggle() end, { silent = true })
+local tree_loaded = false
+local function ensure_tree()
+  if tree_loaded then return end
+  tree_loaded = true
+
+  vim.pack.add({ "https://github.com/nvim-tree/nvim-tree.lua" })
+
+  local function on_attach(bufnr)
+    require("nvim-tree.api").config.mappings.default_on_attach(bufnr)
+    vim.keymap.set("n", "<Tab>", ":tabnext<CR>", { buffer = bufnr })
+  end
+
+  require("nvim-tree").setup({
+    on_attach = on_attach,
+    tab = {
+      sync = { open = true },
+    },
+    sync_root_with_cwd = true,
+    update_focused_file = {
+      enable = true,
+      update_root = true,
+    },
+    git = {
+      enable = false,
+    },
+    renderer = {
+      root_folder_label = ":t",
+      icons = {
+        padding = "  ",
+      },
+      indent_markers = {
+        enable = true,
+      },
+    },
+  })
+end
+
+vim.keymap.set("n", "<C-e>", function()
+  ensure_tree()
+  require("nvim-tree.api").tree.toggle()
+end, { silent = true })
 
 vim.api.nvim_create_autocmd("BufEnter", {
   nested = true,
@@ -21,40 +59,4 @@ vim.api.nvim_create_autocmd("BufEnter", {
       vim.cmd("quit")
     end
   end,
-})
-
-local function on_attach(bufnr)
-  local api = require("nvim-tree.api")
-
-  local function opts(desc)
-    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-  end
-
-  api.config.mappings.default_on_attach(bufnr)
-
-  vim.keymap.set("n", "<Tab>", ":tabnext<CR>", { buffer = bufnr })
-end
-
-require("nvim-tree").setup({
-  on_attach = on_attach,
-  tab = {
-    sync = { open = true },
-  },
-  sync_root_with_cwd = true,
-  update_focused_file = {
-    enable = true,
-    update_root = true,
-  },
-  git = {
-    enable = false,
-  },
-  renderer = {
-    root_folder_label = ":t",
-    icons = {
-      padding = "  ",
-    },
-    indent_markers = {
-      enable = true,
-    },
-  },
 })
