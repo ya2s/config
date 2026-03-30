@@ -1,45 +1,29 @@
-local M = {
-  "nvim-tree/nvim-tree.lua",
-  lazy = true,
-  event = "BufEnter",
-  -- keys = "<C-e>",
-  -- dependencies = {
-  -- { "ahmedkhalf/project.nvim" },
-  -- },
-}
+if not vim.g.vscode then
+  vim.pack.add({ "https://github.com/nvim-tree/nvim-tree.lua" })
 
-function M.init()
   vim.api.nvim_create_autocmd("BufEnter", {
     nested = true,
     callback = function(ctx)
-      -- Go to root on startup
       local root = vim.fs.root(ctx.buf, { ".git" })
       if root then
         vim.uv.chdir(root)
       end
     end,
   })
-end
 
-function M.config()
-  local nonicons_extention = require "nvim-nonicons.extentions.nvim-tree"
-
-  -- vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { fg = "#24292e" })
-
-  vim.keymap.set("n", "<C-e>", require("nvim-tree.api").tree.toggle, { silent = true })
+  vim.keymap.set("n", "<C-e>", function() require("nvim-tree.api").tree.toggle() end, { silent = true })
 
   vim.api.nvim_create_autocmd("BufEnter", {
     nested = true,
-    callback = function(ctx)
-      -- Auto close on close
-      if #vim.api.nvim_list_wins() == 1 and require("nvim-tree.utils").is_nvim_tree_buf() then
-        vim.cmd "quit"
+    callback = function()
+      if #vim.api.nvim_list_wins() == 1 and vim.bo.filetype == "NvimTree" then
+        vim.cmd("quit")
       end
     end,
   })
 
   local function on_attach(bufnr)
-    local api = require "nvim-tree.api"
+    local api = require("nvim-tree.api")
 
     local function opts(desc)
       return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
@@ -50,7 +34,7 @@ function M.config()
     vim.keymap.set("n", "<Tab>", ":tabnext<CR>", { buffer = bufnr })
   end
 
-  require("nvim-tree").setup {
+  require("nvim-tree").setup({
     on_attach = on_attach,
     tab = {
       sync = { open = true },
@@ -60,24 +44,17 @@ function M.config()
       enable = true,
       update_root = true,
     },
-    respect_buf_cwd = true,
     git = {
       enable = false,
     },
     renderer = {
-      root_folder_modifier = ":t",
-      -- group_empty = true,
+      root_folder_label = ":t",
       icons = {
         padding = "  ",
-        glyphs = nonicons_extention.glyphs,
       },
       indent_markers = {
         enable = true,
       },
     },
-  }
-
-  -- require("project_nvim").setup {}
+  })
 end
-
-return M
