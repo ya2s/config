@@ -1,0 +1,13 @@
+*
+!.gitignore
+!.luarc.json
+!git/
+!git/**
+!nvim/
+!nvim/**
+!starship/
+!starship/**
+!tmux/
+!tmux/**
+!zsh/
+!zsh/**
