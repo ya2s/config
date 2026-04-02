@@ -3,7 +3,7 @@ for file in $XDG_CONFIG_HOME/zsh/*.zsh; do
 done
 
 # zsh-autosuggestions
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#3D444D'
 
 touch ~/.hushlogin
 
@@ -11,5 +11,3 @@ key=$(ssh-add -l)
 if [ ${key} = 'The agent has no identities.' ] && [ -e ~/.ssh/id_rsa ]; then
   ssh-add --apple-use-keychain
 fi
-
-eval "$(starship init zsh)"

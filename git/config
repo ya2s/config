@@ -13,6 +13,7 @@
 [alias]
   unstage = reset HEAD
   get = !ghq get
+  open = !gh browse
 [color "status"]
   added = green
   changed = yellow

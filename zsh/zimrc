@@ -1,3 +1,4 @@
+zmodule sindresorhus/pure --source async.zsh --source pure.zsh
 zmodule completion
 zmodule zsh-users/zsh-completions --fpath src
 zmodule zsh-users/zsh-autosuggestions
