@@ -39,6 +39,26 @@ local function ensure_tree()
       root_folder_label = ":t",
       icons = {
         padding = "  ",
+        show = {
+          file = true,
+          folder = true,
+          folder_arrow = false,
+          git = false,
+          modified = false,
+          bookmarks = false,
+        },
+        glyphs = {
+          default = " ",
+          symlink = " ",
+          folder = {
+            default = "",
+            open = "",
+            empty = "",
+            empty_open = "",
+            symlink = "",
+            symlink_open = "",
+          },
+        },
       },
       indent_markers = {
         enable = true,
