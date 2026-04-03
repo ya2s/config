@@ -7,7 +7,10 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#3D444D'
 
 touch ~/.hushlogin
 
-key=$(ssh-add -l)
-if [ ${key} = 'The agent has no identities.' ] && [ -e ~/.ssh/id_rsa ]; then
-  ssh-add --apple-use-keychain
-fi
+# Run ssh-add check in background (~270ms saved from startup)
+{
+  key=$(ssh-add -l)
+  if [ "${key}" = 'The agent has no identities.' ] && [ -e ~/.ssh/id_rsa ]; then
+    ssh-add --apple-use-keychain
+  fi
+} &!
