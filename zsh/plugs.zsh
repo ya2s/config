@@ -61,11 +61,15 @@ add-zsh-hook precmd _prompt_path_precmd
 _prompt_path_chpwd
 
 # Defer fast-syntax-highlighting until first keystroke (~550ms saved from startup)
-_deferred_fsh() {
-  source "${ZIM_HOME}/modules/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
-  add-zle-hook-widget -d line-init _deferred_fsh
-}
-add-zle-hook-widget line-init _deferred_fsh
+# Guard against re-sourcing: once fsh is loaded it wraps zle-line-init, so
+# re-arming this hook makes azhw:zle-line-init recurse into itself (FUNCNEST).
+if [[ -z $FAST_HIGHLIGHT_VERSION ]]; then
+  _deferred_fsh() {
+    source "${ZIM_HOME}/modules/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+    add-zle-hook-widget -d line-init _deferred_fsh
+  }
+  add-zle-hook-widget line-init _deferred_fsh
+fi
 
 # Optimized compinit: full rebuild only if dump is missing or >20h old
 () {
