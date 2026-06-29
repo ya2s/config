@@ -1,13 +1,12 @@
 alias ....='cd ../../..'
 alias ...='cd ../..'
 alias ..='cd ..'
-alias cd='(){builtin cd "$@" && ls}'
+chpwd() { [[ -o interactive ]] && eza }
 alias cat='bat --style=plain'
-alias conf='(){cd $XDG_CONFIG_HOME/$1}'
+conf() { cd "$XDG_CONFIG_HOME/$1" }
 alias d="docker"
 alias di="docker image"
 alias dc="docker compose"
-alias fb='firebase'
 alias g='git'
 alias gc='gcloud'
 alias gd='github'

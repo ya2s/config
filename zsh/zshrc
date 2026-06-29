@@ -5,7 +5,7 @@ done
 # zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#3D444D'
 
-touch ~/.hushlogin
+[[ -f ~/.hushlogin ]] || touch ~/.hushlogin
 
 # Run ssh-add check in background (~270ms saved from startup)
 {
